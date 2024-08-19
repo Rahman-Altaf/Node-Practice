@@ -1,17 +1,25 @@
 // Script start (npm start  OR node index.js)
 const http = require("http");
 const fs = require("fs");
-const { url } = require("inspector");
+const url = require("url");
+// const { url } = require("inspector");
+const { Url } = require("url");
 const myServer = http.createServer((req, res) => {
-    if (req.url==="/favicon.ico") return res.end();  
-  const log = `${Date.now()} : ${req.url} New User Req Something \n `;
+  if (req.url === "/favicon.ico") return res.end();
+  const myUrl = url.parse(req.url, true);
+  console.log(myUrl);
+  const log = `${Date.now()} : ${req.url} : ${req.method} New User Req Something \n `;
   fs.appendFile("log.txt", log, (err, data) => {
-    switch (req.url) {
+    switch (myUrl.pathname) {
       case "/":
         res.end("Welcome To Home Page");
         break;
       case "/about-us":
-        res.end("Read Our Latest Blogs At About Us ");
+        const username = myUrl.query.myname;
+        res.end(`Hi,${username}`);
+      case "/search":
+        const search = myUrl.query.search_query;
+        res.end("Here Are Your Results \n" + search);
         break;
       case "/contact-us":
         res.end("We Are Available 24/7 Toll Free Number");
@@ -21,7 +29,13 @@ const myServer = http.createServer((req, res) => {
         break;
       default:
         res.end("404 Page Not Found");
-        break;
+            break;
+        case "/signup":
+            if (req.method === "GET") res.end("This is Your Signup form")
+            else if (req.method === "POST") {
+                res.end("Sucessfully Created")
+            }
+            
     }
   });
 });

@@ -1,7 +1,4 @@
-1724096995103 : / New User Req Something 
- 1724096995223 : /favicon.ico New User Req Something 
- 1724097002839 : /contact-us New User Req Something 
- 1724097002890 : /favicon.ico New User Req Something 
- 1724097281320 : /contact-us New User Req Something 
- 1724097287701 : /about-us New User Req Something 
+1724101429907 : /search?searc_query=Java+tic+tac+toe : GET New User Req Something 
+ 1724101441095 : /search?search_query=Java+tic+tac+toe : GET New User Req Something 
+ 1724101832093 : /signup : GET New User Req Something 
  

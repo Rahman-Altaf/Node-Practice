@@ -1,11 +1,23 @@
 // Script start (npm start  OR node index.js)
-const http = require("http");
+// const http = require("http");
+const express = require("express")
 const fs = require("fs");
 const url = require("url");
 // const { url } = require("inspector");
 const { Url } = require("url");
-const myServer = http.createServer((req, res) => {
-  if (req.url === "/favicon.ico") return res.end();
+const app = express();
+app.get('/', (req, res) => {
+    return res.send("Hi Your Name Is  " + req.query.name + "And Your Age Is " + req.query.age + " Welcome To Home Page")
+});
+app.get('/about-us', (req, res) => {
+    return res.send("Read Our Latest Blogs")
+});
+app.post('/contact-us',(req, res)=> {
+    
+})
+
+function myHandler(req, res) {
+    if (req.url === "/favicon.ico") return res.end();
   const myUrl = url.parse(req.url, true);
   console.log(myUrl);
   const log = `${Date.now()} : ${req.url} : ${req.method} New User Req Something \n `;
@@ -38,8 +50,12 @@ const myServer = http.createServer((req, res) => {
             
     }
   });
-});
-console.log("New User Req Something");
-// res.end("Welcome From Rahman");
-// console.log(req.headers)
-myServer.listen("8000", console.log("Server Started"));
+}
+app.listen(8000,()=> console.log("Server Started"));
+//  Jab hum express use kareyn gay to humeyn Https wala kam nhe karna paray ga is liye nichla code
+// comment kar dia hay or is sab ki jagah 1 he line likh di hay app.listen(8000)
+// const myServer = http.createServer(app);
+// console.log("New User Req Something");
+// // res.end("Welcome From Rahman");
+// // console.log(req.headers)
+// myServer.listen("8000", console.log("Server Started"));

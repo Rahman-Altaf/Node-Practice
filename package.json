@@ -4,8 +4,11 @@
   "description": "Node Basic Functions / Sync / Async / Read / Write / Copy/ Event Loop/ etc",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "chalo": "node index"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express-generator": "^4.16.1"
+  }
 }
